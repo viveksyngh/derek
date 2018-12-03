@@ -90,9 +90,27 @@ type DerekRepoConfig struct {
 
 	//ContributingURL url to contribution guide
 	ContributingURL string `yaml:"contributing_url"`
+
+	//Roles roles applicable for the repo
+	Roles []Role `yaml:"roles"`
+
+	//Users users list
+	Users []User `yaml:"users"`
 }
 
 // FirstTimeContributor whether the contributor is new to the repo
 func (p *PullRequest) FirstTimeContributor() bool {
 	return p.AuthorAssociation == "NONE"
+}
+
+//Role user's role for derek
+type Role struct {
+	Role    string   `yaml:"role"`
+	Actions []string `yaml:"actions"`
+}
+
+//User user of the derek
+type User struct {
+	Name  string   `yaml:"name"`
+	Roles []string `yaml:"roles"`
 }
